@@ -1,0 +1,43 @@
+.Container {
+    position: relative;
+    margin: 25px 0;
+}
+
+.Input {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid teal;
+    font-size: 20px;
+    background-color: #fff;
+    color: teal;
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.NameInput {
+    position: absolute;
+    top: 2px;
+    font-size: 20px;
+    margin: 8px;
+    padding: 0 10px;
+    background-color: #fff;
+    -webkit-transition: top .2s ease-in-out, 
+                            font-size .2s ease-in-out;
+    transition: top .2s ease-in-out, 
+                    font-size .2s ease-in-out;
+    color: teal;
+}
+
+.Active {
+    top: -25px;
+    font-size: 20px;
+}
+
+.Error {
+    border: 1px solid red;
+
+}
+
