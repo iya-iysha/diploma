@@ -2,6 +2,13 @@
 
 * {border:0;outline:0;}
 
+.Container {
+    background-color: yellowgreen;
+    height: 100%;
+    display: flex;
+justify-content: center;
+}
+
 .File:after {
     content: "Upload your file";
     margin: 50px auto;
@@ -28,9 +35,112 @@
 
 .EnterData {
     width: 300px;
+    padding: 0;
 }
 
-tr {
+.InputChangeCl {
+    padding: 10px;
+}
+
+.ChangeData {
+    width: 100px;
+}
+
+.Table {
+    // width: 100%;
+    background-color: #fff;
+    width: calc(100% - 100px);
+    // margin-left: 90px;
+    border-radius: 0 0 12px 12px;
+    padding: 30px;
+    padding-top: 10px;
+    margin-bottom: 100px;
+}
+
+.Title {
+    font-size: 25px;
+    font-family: Gill Sans, sans-serif;
+    padding: 5px 15px;
+    color: green;
+    padding-bottom: 30px;
+    background-color: #fff;
+    margin-top: 50px;
+    border-radius: 12px 12px 0 0;
+    padding-top: 20px;
+}
+
+th {
+    font-size: 20px;
+    font-family: Gill Sans, sans-serif;
+    padding: 5px 15px;
+    color: blue;
+    border: 1px solid blue;
+}
+
+td {
+    border: 1px solid blue;
+}
+
+.Button {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid teal;
+    background-color: teal;
+    font-size: 25px;
+    position: absolute;
+    bottom: 15px;
+    width: calc(100% - 70px);
+    cursor: pointer;
+}
+
+.AddForm {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ModalContent {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    height: 550px;
+    width: 700px;
+    position: relative;
+}
+
+.AddNote {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid teal;
+    background-color: teal;
+    font-size: 25px;
+    position: fixed;
+    bottom: 15px;
+    margin-left: 15px;
+    width: calc(100% - 65px);
+    cursor: pointer;
+}
+
+.UploadImage {
+    display: flex;
+    align-items: center;
+}
+
+.Column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
     height: 300px;
 }
+
+
 
