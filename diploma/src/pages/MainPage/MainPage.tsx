@@ -131,10 +131,13 @@ export const MainPage = () => {
                     </div>
                     {!clearImage && url && <img src={URL.createObjectURL(url)}className={s.Image}></img>}
                 </div>
-                <div className={s.ButtonConvert} onClick={handleClick}>{'=>'}</div>
-                <div className={s.ConvertText}>{convertText}</div>
+                <div className={s.ButtonConvert}>{'=>'}</div>
+                <div>
+                    <div className={s.ConvertText}>{convertText}</div>
+                    <div className={s.ButtonConvert} style={{marginTop: '20px', fontSize: '18px', padding: '10px'}}>Сохранить как</div>
                 </div>
-                <div style={{display: 'flex', justifyContent: 'space-around', marginTop: '100px', alignItems: 'center'}}>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'space-around', marginTop: '60px', alignItems: 'center'}}>
                     <div>
                         <FormInput label='Название' className={s.EnterData} value={name} onChange={handleChange(setName)} placeholder={'Название записи'}/>
                     </div>
