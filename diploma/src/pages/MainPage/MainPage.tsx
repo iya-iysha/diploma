@@ -1,6 +1,6 @@
 import s from './MainPage.module.scss';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from '../../components/Input/Input';
 import {FormInput} from '../../components/FormInput/FormInput';
 
@@ -25,6 +25,8 @@ export const MainPage = () => {
     const [addNote, setAddNote] = useState(false);
     const [changeTitle, setChangeTitle] = useState(false);
     const [changeText, setChangeText] = useState(false);
+    const [convertText, setConvertText] = useState('Распознанный текст');
+    const [search, setSearch] = useState('');
 
 
     const [data, setData] = useState<Table>([]);
@@ -44,14 +46,17 @@ export const MainPage = () => {
         setData([...data, {name: name,
             userName: userName,
             picture: url ? url : new File(['cats'], 'cats.jpg'),
-            text: text,
+            text: convertText,
             index: data.length}]);
         setName('');
         setText('');
         setUrl(new File(['cats'], 'cats.jpg'));
         setClearImage(true);
         setAddNote(false);
+        setConvertText('Распознанный текст');
     }
+
+    console.log(url);
 
     const handleChangeTitle = (id: number, name: string) => () => {
         const newData = data.map(item => item.index === id ? {...item, name: name} : item);
@@ -67,10 +72,15 @@ export const MainPage = () => {
         setChangeText(false);
      };
 
+     console.log(search);
+     console.log( data.filter(item => search ? item.name === search : item));
+
     return (
       <div className={s.Container}>
         {!!data.length ? <table className={s.Table}> 
             <caption className={s.Title}>История пользователя</caption>
+            <FormInput label='Поиск' className={s.Search} value={search} onChange={handleChange(setSearch)} placeholder={'Введите название записи'} smallPadding/>
+
             <tr>
                 <th>Название</th>
                 <th>Пользователь</th>
@@ -78,7 +88,7 @@ export const MainPage = () => {
                 <th>Текст</th>
             </tr>
             <td>
-                {data.map(item => <tr className={classNames(s.Column)}>
+                {data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={classNames(s.Column)}>
                     <div key={item.index}>
                         {changeTitle ? 
                             <div style={{marginTop: '40px'}}>
@@ -92,9 +102,9 @@ export const MainPage = () => {
                     </div>
                     </tr>)}
             </td>
-            <td>{data.map(item => <tr className={classNames(s.Column)}>{item.userName}</tr>)}</td>
-            <td>{data.map(item => <tr className={s.Column}><img src={URL.createObjectURL(item.picture)} style={{height: '300px', marginTop: '40px'}}></img></tr>)}</td>
-            <td>{data.map(item => <tr className={classNames(s.Column)}>
+            <td>{data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={classNames(s.Column)}>{item.userName}</tr>)}</td>
+            <td>{data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={s.Column}><img src={URL.createObjectURL(item.picture)} style={{height: '300px', marginTop: '40px'}}></img></tr>)}</td>
+            <td>{data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={classNames(s.Column)}>
                 <div key={item.index}>
                         {changeText ? 
                             <div style={{marginTop: '40px'}}>
@@ -114,7 +124,7 @@ export const MainPage = () => {
                 <div style={{display: 'flex', justifyContent: 'space-around'}}>
                 <div className={s.UploadImage}>
                     <div style={{marginTop: '120px', position: 'relative'}}>
-                        <label className={classNames(s.File, url && s.HideBorders)} htmlFor="file">
+                        <label className={classNames(s.File, (url && url?.name !== 'cats.jpg') && s.HideBorders)} htmlFor="file">
                            Выберите файл
                             <input type="file" id="file" className={s.Input} onChange={changeFile}/>
                         </label>
@@ -122,7 +132,7 @@ export const MainPage = () => {
                     {!clearImage && url && <img src={URL.createObjectURL(url)}className={s.Image}></img>}
                 </div>
                 <div className={s.ButtonConvert} onClick={handleClick}>{'=>'}</div>
-                <div className={s.ConvertText}>Распознанный текст</div>
+                <div className={s.ConvertText}>{convertText}</div>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'space-around', marginTop: '100px', alignItems: 'center'}}>
                     <div>
