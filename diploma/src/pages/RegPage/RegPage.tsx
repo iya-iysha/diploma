@@ -4,7 +4,7 @@ import s from './RegPage.module.scss';
 import {Input} from '../../components/Input/Input';
 
 
-export const MainPage = () => {
+export const RegPage = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

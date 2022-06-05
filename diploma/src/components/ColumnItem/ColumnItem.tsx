@@ -11,8 +11,8 @@ type ColumnItemProps = {
     className?: string; 
     name: string;
     needChange?: boolean;
-    setValue?: (value: string) => void;
-    handleChangeValue?: (value: string) => () => void;
+    setValue: (value: string) => void;
+    handleChangeValue: (value: string) => () => void;
 
 }
 

@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import {MainPage} from './pages/MainPage/MainPage';
+// import {RegPage} from './pages/RegPage/RegPage';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* <RegPage /> */}
     <MainPage />
   </React.StrictMode>,
   document.getElementById('root')

@@ -107,25 +107,34 @@ export const MainPage = () => {
                         </div>}
                     </div>
             </tr>)}</td>
-        </table> : <div style={{height: '100vh'}}> Нет записей
+        </table> : <div style={{height: '100vh'}}> Данные об истории пользователей отсутствуют. Но вы можете их добавить, нажать на кнопку "Добавить запись" внизу страницы.
             </div>}
         {addNote ? <div className={s.AddForm}>
             <div className={s.ModalContent}>
+                <div style={{display: 'flex', justifyContent: 'space-around'}}>
                 <div className={s.UploadImage}>
-            <div style={{marginTop: '40px'}}>
-                <label className={s.File} htmlFor="file">
-                    <input type="file" id="file" className={s.Input} onChange={changeFile}/>
-                </label>
-            </div>
-            {!clearImage && url && <img src={URL.createObjectURL(url)} style={{height: '200px', marginLeft: '40px'}}></img>}
-            </div>
-            <div style={{marginTop: '40px'}}>
-                <FormInput label='Название' className={s.EnterData} value={name} onChange={handleChange(setName)} placeholder={'Название записи'}/>
-            </div>
-            <div style={{marginTop: '10px'}}>
-                <FormInput label='Текст' className={s.EnterData} value={text} onChange={handleChange(setText)} placeholder={'Текст'}/>
-            </div>
-            <div className={s.Button} onClick={handleClick}>Добавить</div>
+                    <div style={{marginTop: '120px', position: 'relative'}}>
+                        <label className={classNames(s.File, url && s.HideBorders)} htmlFor="file">
+                           Выберите файл
+                            <input type="file" id="file" className={s.Input} onChange={changeFile}/>
+                        </label>
+                    </div>
+                    {!clearImage && url && <img src={URL.createObjectURL(url)}className={s.Image}></img>}
+                </div>
+                <div className={s.ButtonConvert} onClick={handleClick}>{'=>'}</div>
+                <div className={s.ConvertText}>Распознанный текст</div>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'space-around', marginTop: '100px', alignItems: 'center'}}>
+                    <div>
+                        <FormInput label='Название' className={s.EnterData} value={name} onChange={handleChange(setName)} placeholder={'Название записи'}/>
+                    </div>
+                    <div>{userName}</div>
+                    
+                {/* <div style={{marginTop: '10px'}}>
+                    <FormInput label='Текст' className={s.EnterData} value={text} onChange={handleChange(setText)} placeholder={'Текст'}/>
+                </div> */}
+                </div>
+                <div className={s.Button} onClick={handleClick}>Добавить</div>
             </div>
         </div> : <div className={s.AddNote} onClick={() => setAddNote(true)}>Добавить запись</div>}
     </div>
