@@ -3,7 +3,7 @@
 * {border:0;outline:0;}
 
 .Container {
-    background-color: yellowgreen;
+    background-color: #015D52;
     height: 100%;
     display: flex;
 justify-content: center;
@@ -117,6 +117,21 @@ padding: 20px;
 margin-top: 40px;
 height: 150px;
 color: teal;
+}
+
+.Delete {
+    color: red;
+    cursor: pointer;
+    height: 20px;
+    margin: 5px;
+    padding: 10px;
+    display: table-cell;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: red;
+        color: white;
+    }
 }
 
 .Search {

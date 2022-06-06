@@ -18,6 +18,8 @@ export const MainPage = () => {
 
     const userName = 'iya-iysha';
 
+    const userNames = ['iya-iysha', 'asdfgh', 'testUser1'];
+
     const [url, setUrl] = useState<File>();
     const [name, setName] = useState('');
     const [text, setText] = useState('');
@@ -38,13 +40,15 @@ export const MainPage = () => {
         }
     }
 
+    const rand = Math.floor(Math.random()*userNames.length);
+
     const handleChange = (setValue:(value: string) => void) => (event: React.FormEvent<HTMLInputElement>) => {
         setValue(event.currentTarget.value);
     }
 
     const handleClick = () => {
         setData([...data, {name: name,
-            userName: userName,
+            userName: userNames[rand],
             picture: url ? url : new File(['cats'], 'cats.jpg'),
             text: convertText,
             index: data.length}]);
@@ -86,9 +90,10 @@ export const MainPage = () => {
                 <th>Пользователь</th>
                 <th>Изображение</th>
                 <th>Текст</th>
+                <th></th>
             </tr>
             <td>
-                {data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={classNames(s.Column)}>
+                {data.filter(item => search ? item.userName.includes(search) : item).map(item => <tr className={classNames(s.Column)}>
                     <div key={item.index}>
                         {changeTitle ? 
                             <div style={{marginTop: '40px'}}>
@@ -102,9 +107,9 @@ export const MainPage = () => {
                     </div>
                     </tr>)}
             </td>
-            <td>{data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={classNames(s.Column)}>{item.userName}</tr>)}</td>
-            <td>{data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={s.Column}><img src={URL.createObjectURL(item.picture)} style={{height: '300px', marginTop: '40px'}}></img></tr>)}</td>
-            <td>{data.filter(item => search ? item.name.includes(search) : item).map(item => <tr className={classNames(s.Column)}>
+            <td>{data.filter(item => search ? item.userName.includes(search) : item).map(item => <tr className={classNames(s.Column)}>{item.userName}</tr>)}</td>
+            <td>{data.filter(item => search ? item.userName.includes(search) : item).map(item => <tr className={s.Column}><img src={URL.createObjectURL(item.picture)} style={{width: '300px', marginTop: '40px'}}></img></tr>)}</td>
+            <td>{data.filter(item => search ? item.userName.includes(search) : item).map(item => <tr className={classNames(s.Column)}>
                 <div key={item.index}>
                         {changeText ? 
                             <div style={{marginTop: '40px'}}>
@@ -117,6 +122,7 @@ export const MainPage = () => {
                         </div>}
                     </div>
             </tr>)}</td>
+            <td>{data.filter(item => search ? item.userName.includes(search) : item).map(item => <tr className={classNames( s.Delete)}>Удалить</tr>)}</td>
         </table> : <div style={{height: '100vh'}}> Данные об истории пользователей отсутствуют. Но вы можете их добавить, нажать на кнопку "Добавить запись" внизу страницы.
             </div>}
         {addNote ? <div className={s.AddForm}>

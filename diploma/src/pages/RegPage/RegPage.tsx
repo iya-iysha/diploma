@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import s from './RegPage.module.scss';
 import {Input} from '../../components/Input/Input';
+import {registrateUser, logUser} from '../../actions/registration';
 
 
 export const RegPage = () => {
@@ -26,6 +27,14 @@ export const RegPage = () => {
         setRepearPass('');
     }
 
+    const handleClickLog = () => {
+        if (activePage === 'Reg') {
+            registrateUser({name: name, email: email, password: password});
+        } else {
+            logUser({name: name, password: password});
+        }
+    }
+
   return (
         <div className={s.Container}>
             <div className={s.Form}>
@@ -48,7 +57,7 @@ export const RegPage = () => {
                         <Input label='Пароль' value={password} password onChange={handleChange(setPassword)}/>
                     </React.Fragment>
                 )}
-                <div className={s.Button}>{activePage === 'Reg' ? 'Зарегистрироваться' : 'Войти'}</div>
+                <div className={s.Button} onClick={handleClickLog}>{activePage === 'Reg' ? 'Зарегистрироваться' : 'Войти'}</div>
             </div>
         </div>
   );
