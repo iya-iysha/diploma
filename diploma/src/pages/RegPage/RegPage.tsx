@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import s from './RegPage.module.scss';
 import {Input} from '../../components/Input/Input';
-import {registrateUser, logUser} from '../../actions/registration';
+import {registrateUser, logUser, updateReg, updateLogIn} from '../../actions/registration';
 
 
 export const RegPage = () => {
@@ -29,9 +29,13 @@ export const RegPage = () => {
 
     const handleClickLog = () => {
         if (activePage === 'Reg') {
-            registrateUser({name: name, email: email, password: password});
+            registrateUser({name: name, email: email, password: password}).then(() => {
+                updateReg();
+            });
         } else {
-            logUser({name: name, password: password});
+            logUser({name: name, password: password}).then(() => {
+                updateLogIn();
+            });
         }
     }
 
